@@ -1,0 +1,481 @@
+/* ===================================
+   Header Component - Clean & Elegant
+   Making navigation feel luxurious
+   =================================== */
+
+/* Main header wrapper - stays at the top */
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(253, 252, 250, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 1030;
+  padding: 1rem 0;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 2px 8px rgba(46, 46, 46, 0.04);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Slightly more prominent when scrolled */
+.header.scrolled {
+  background: rgba(253, 252, 250, 0.98);
+  box-shadow: 0 4px 12px rgba(46, 46, 46, 0.08);
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--color-accent);
+}
+
+/* Container that holds everything in the nav */
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+/* Logo area with image and text */
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  transition: transform 0.15s ease;
+}
+
+.logo-section:hover {
+  transform: scale(1.02);
+}
+
+/* The circular logo container */
+.logo-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(203, 188, 163, 0.3);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-warm-white);
+  position: relative;
+  border: 2px solid var(--color-border);
+}
+
+/* Hide fallback if we don't need it */
+.logo-fallback {
+  display: none !important;
+}
+
+.logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+  z-index: 2;
+}
+
+/* Hide broken images gracefully */
+.logo-img[src=""],
+.logo-img:not([src]) {
+  display: none;
+}
+
+.logo-image:hover {
+  box-shadow: 0 4px 12px rgba(203, 188, 163, 0.4);
+  transform: scale(1.05);
+  border-color: var(--color-accent);
+}
+
+/* Text next to the logo */
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.business-name {
+  font-size: 1.2rem;
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  line-height: 1;
+  font-family: var(--font-heading);
+  letter-spacing: -0.01em;
+}
+
+.business-tagline {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-weight: var(--font-weight-light);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: var(--font-body);
+}
+
+/* Right side of the header */
+.nav-content {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* Desktop navigation links */
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu li {
+  margin: 0;
+}
+
+.nav-menu a {
+  position: relative;
+  text-decoration: none;
+  color: var(--text-primary);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-base);
+  font-family: var(--font-body);
+  transition: color 0.15s ease;
+  padding: 0.5rem 0.25rem;
+  display: block;
+  letter-spacing: 0.02em;
+}
+
+/* Nice underline animation on hover */
+.nav-menu a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-gold-accent);
+  transition: width 0.3s ease;
+}
+
+.nav-menu a:hover,
+.nav-menu a:focus,
+.nav-menu a.active {
+  color: var(--color-taupe);
+}
+
+.nav-menu a:hover::after,
+.nav-menu a:focus::after,
+.nav-menu a.active::after {
+  width: 100%;
+}
+
+/* Contact button area */
+.quick-contact {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* The main contact button - styled to stand out */
+.header-contact-btn {
+  background: var(--color-button-bg);
+  color: var(--color-button-text);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius-2xl);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-sm);
+  font-family: var(--font-body);
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-soft);
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-button-bg);
+  cursor: pointer;
+  letter-spacing: 0.02em;
+}
+
+/* Phone emoji before the text */
+.header-contact-btn::before {
+  content: '📞';
+  margin-right: 0.5rem;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.header-contact-btn:hover,
+.header-contact-btn:focus {
+  background: var(--color-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card);
+  color: var(--color-warm-white);
+  border-color: var(--color-hover);
+}
+
+/* Hamburger button - hidden on desktop */
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: 2px solid var(--color-border);
+  font-size: 1.25rem;
+  color: var(--color-button-bg);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: var(--border-radius-md);
+  transition: all 0.15s ease;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-menu-btn:hover {
+  background: var(--color-surface);
+  border-color: var(--color-button-bg);
+  transform: scale(1.05);
+}
+
+/* ===================================
+   Mobile & Tablet Styles
+   Everything looks good on small screens
+   =================================== */
+
+/* Tablet and mobile phones */
+@media (max-width: 768px) {
+  .nav-container {
+    padding: 0 1rem;
+  }
+  
+  /* Smaller logo for mobile */
+  .logo-image {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .business-name {
+    font-size: 1rem;
+  }
+  
+  .business-tagline {
+    font-size: 0.625rem;
+  }
+  
+  /* Mobile Menu Button - GOLD background, dark icon */
+  .mobile-menu-btn {
+    display: flex !important;
+    background: #C7B8A1 !important;
+    border: 2px solid #C7B8A1 !important;
+    color: #1a1a1a !important;
+    font-size: 1.25rem !important;
+    width: 44px !important;
+    height: 44px !important;
+  }
+  
+  .mobile-menu-btn:hover {
+    background: #BDA98F !important;
+    border-color: #BDA98F !important;
+  }
+  
+  /* When menu is open, button stays highlighted */
+  .mobile-menu-btn.active {
+    background: #BDA98F !important;
+    border-color: #BDA98F !important;
+  }
+  
+  .mobile-menu-btn i {
+    color: #1a1a1a !important;
+    font-size: 1.25rem !important;
+  }
+  
+  /* Mobile Navigation Menu - Very visible dropdown */
+  .nav-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #FFFFFF !important;
+    flex-direction: column;
+    padding: 1.5rem 2rem !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2) !important;
+    gap: 0;
+    border-top: 3px solid #C7B8A1 !important;
+    border-bottom: 3px solid #C7B8A1 !important;
+    z-index: 1000;
+  }
+  
+  /* Show menu when active */
+  .nav-menu.active {
+    display: flex !important;
+    animation: slideDown 0.3s ease-out;
+  }
+  
+  /* Smooth slide-down animation */
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Menu Items - Dark text on white background */
+  .nav-menu a {
+    padding: 1.2rem 1rem !important;
+    border-bottom: 2px solid #ECEAE4 !important;
+    font-size: 1.2rem !important;
+    font-weight: 600 !important;
+    color: #1a1a1a !important;
+    transition: all 0.2s ease;
+    background: #FFFFFF !important;
+  }
+  
+  .nav-menu a:last-child {
+    border-bottom: none !important;
+  }
+  
+  /* Nice hover effect with indent */
+  .nav-menu a:hover,
+  .nav-menu a:focus,
+  .nav-menu a.active {
+    background: #F8F7F4 !important;
+    color: #C7B8A1 !important;
+    padding-left: 1.5rem !important;
+    transform: translateX(5px);
+  }
+  
+  /* Smaller contact button on mobile */
+  .header-contact-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+  }
+  
+  .header-contact-btn::before {
+    font-size: 0.875rem;
+  }
+}
+
+/* Extra small phones */
+@media (max-width: 480px) {
+  .business-name {
+    font-size: 0.875rem;
+  }
+  
+  /* Hide tagline to save space */
+  .business-tagline {
+    display: none;
+  }
+  
+  /* Even smaller contact button */
+  .header-contact-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.7rem;
+  }
+  
+  .nav-menu a {
+    font-size: 1.1rem !important;
+    padding: 1rem 0.8rem !important;
+  }
+  
+  .mobile-menu-btn {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
+
+/* ===================================
+   DARK MODE - WITH BUSINESS NAME/TAGLINE FIX
+   =================================== */
+@media (prefers-color-scheme: dark) {
+  /* FIX HEADER BACKGROUND - DARK IN DARK MODE */
+  .header {
+    background: rgba(26, 26, 26, 0.95) !important;
+    border-bottom: 1px solid #3a3a3a !important;
+  }
+  
+  .header.scrolled {
+    background: rgba(26, 26, 26, 0.98) !important;
+    border-bottom: 1px solid #8B7355 !important;
+  }
+  
+  /* FIX NAVIGATION LINKS - LIGHT IN DARK MODE */
+  .nav-menu a {
+    color: #E8E6E3 !important;
+  }
+  
+  .nav-menu a:hover,
+  .nav-menu a:focus,
+  .nav-menu a.active {
+    color: #D4B896 !important;
+  }
+  
+  /* HEADER LOGO TEXT - WHITE IN DARK MODE */
+  .business-name,
+  .business-name[style],
+  .logo-section .business-name,
+  .logo-text .business-name,
+  body .business-name,
+  html .business-name,
+  .header .business-name,
+  .header.scrolled .business-name,
+  .scrolled .business-name {
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+  }
+  
+  .business-tagline,
+  .business-tagline[style],
+  .logo-section .business-tagline,
+  .logo-text .business-tagline,
+  body .business-tagline,
+  html .business-tagline,
+  .header .business-tagline,
+  .header.scrolled .business-tagline,
+  .scrolled .business-tagline {
+    color: #B8B5B2 !important;
+    -webkit-text-fill-color: #B8B5B2 !important;
+  }
+  
+  /* Mobile menu dark mode styles */
+  @media (max-width: 768px) {
+    .mobile-menu-btn {
+      background: #C7B8A1 !important;
+      border-color: #C7B8A1 !important;
+      color: #1a1a1a !important;
+    }
+    
+    .mobile-menu-btn i {
+      color: #1a1a1a !important;
+    }
+    
+    .nav-menu {
+      background: #2d2d2d !important;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5) !important;
+      border-top-color: #C7B8A1 !important;
+      border-bottom-color: #C7B8A1 !important;
+    }
+    
+    .nav-menu a {
+      color: #E8E6E3 !important;
+      background: #2d2d2d !important;
+      border-bottom-color: #3d3d3d !important;
+    }
+    
+    .nav-menu a:hover,
+    .nav-menu a:focus,
+    .nav-menu a.active {
+      background: #3d3d3d !important;
+      color: #C7B8A1 !important;
+    }
+  }
+}

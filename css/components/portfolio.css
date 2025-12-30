@@ -1,0 +1,696 @@
+/* ===================================
+   Portfolio Component Styles
+   Clean, elegant design with smooth interactions
+   =================================== */
+
+/* Main portfolio section */
+.portfolio {
+  background: var(--color-bg);
+  padding: var(--spacing-20) 0;
+}
+
+/* Grid layout for portfolio items */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-8);
+  margin-top: var(--spacing-12);
+}
+
+/* Individual portfolio cards */
+.portfolio-card {
+  background: var(--color-warm-white);
+  border-radius: var(--border-radius-2xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: all var(--transition-normal);
+  position: relative;
+  height: fit-content;
+  cursor: pointer;
+  border: 1px solid var(--color-border);
+}
+
+/* Card lifts up slightly on hover */
+.portfolio-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--color-accent);
+}
+
+/* Container for portfolio images */
+.portfolio-image-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--border-radius-xl) var(--border-radius-xl) 0 0;
+  background: var(--color-surface);
+}
+
+/* Styling for single image cards */
+.portfolio-image.single {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+/* Zoom effect on single images when hovering */
+.portfolio-card:hover .portfolio-image.single {
+  transform: scale(1.05);
+}
+
+/* Image slider for multiple photos */
+.portfolio-slider {
+  position: relative;
+  height: 250px;
+  overflow: hidden;
+  background: var(--color-surface);
+}
+
+/* Slides container that moves horizontally */
+.portfolio-slides {
+  display: flex;
+  height: 100%;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+/* Individual images in the slider */
+.portfolio-image {
+  min-width: 100%;
+  height: 100%;
+  object-fit: cover;
+  flex-shrink: 0;
+  transition: transform var(--transition-slow);
+}
+
+/* Subtle zoom on slider images when hovering */
+.portfolio-card:hover .portfolio-image {
+  transform: scale(1.02);
+}
+
+/* Previous/Next navigation buttons container */
+.portfolio-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--spacing-3);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Show navigation buttons on hover */
+.portfolio-card:hover .portfolio-nav {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Circular navigation buttons */
+.portfolio-nav-btn {
+  background: rgba(253, 252, 250, 0.95);
+  border: 1px solid var(--color-border);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-button-bg);
+  font-size: var(--font-size-base);
+  transition: all var(--transition-fast);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-soft);
+  pointer-events: auto;
+}
+
+/* Button hover effect - fills with color */
+.portfolio-nav-btn:hover {
+  background: var(--color-button-bg);
+  color: var(--color-button-text);
+  transform: scale(1.1);
+  box-shadow: var(--shadow-card);
+  border-color: var(--color-button-bg);
+}
+
+/* Button press effect */
+.portfolio-nav-btn:active {
+  transform: scale(0.95);
+}
+
+.portfolio-nav-btn i {
+  font-size: 12px;
+}
+
+/* ===================================
+   DOT INDICATORS - DESKTOP (MERGED FIX)
+   =================================== */
+.portfolio-dots,
+.slider-dots,
+.carousel-indicators,
+.swiper-pagination {
+  position: absolute;
+  bottom: var(--spacing-4);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  background: rgba(46, 46, 46, 0.6);
+  padding: var(--spacing-2) var(--spacing-3);
+  border-radius: var(--border-radius-2xl);
+  backdrop-filter: blur(10px);
+  z-index: 10;
+}
+
+/* Individual dot indicator */
+.portfolio-dot,
+.slider-dot,
+.carousel-indicator,
+.swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(199, 184, 161, 0.4);
+  border: 2px solid rgba(199, 184, 161, 0.6);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  padding: 0;
+  margin: 0;
+}
+
+/* Active dot is larger and highlighted */
+.portfolio-dot.active,
+.slider-dot.active,
+.carousel-indicator.active,
+.swiper-pagination-bullet-active {
+  background: #C7B8A1;
+  border-color: #C7B8A1;
+  transform: scale(1.2);
+  box-shadow: 0 0 6px rgba(232, 220, 196, 0.8);
+}
+
+/* Dot hover effect */
+.portfolio-dot:hover,
+.slider-dot:hover,
+.carousel-indicator:hover,
+.swiper-pagination-bullet:hover {
+  background: rgba(255, 255, 255, 0.8);
+  transform: scale(1.2);
+}
+
+/* Counter showing current image (e.g., "1/5") */
+.image-count {
+  position: absolute;
+  top: var(--spacing-3);
+  right: var(--spacing-3);
+  background: rgba(46, 46, 46, 0.75);
+  color: var(--color-warm-white);
+  padding: var(--spacing-1) var(--spacing-3);
+  border-radius: var(--border-radius-2xl);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  backdrop-filter: blur(5px);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  font-family: var(--font-body);
+  letter-spacing: 0.02em;
+}
+
+/* Camera emoji before the counter */
+.image-count::before {
+  content: '📷';
+  font-size: var(--font-size-sm);
+}
+
+/* Text section below the images */
+.portfolio-info {
+  padding: var(--spacing-6);
+  text-align: center;
+  background: var(--color-warm-white);
+}
+
+/* Project title */
+.portfolio-name {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-3);
+  line-height: var(--line-height-tight);
+  font-family: var(--font-heading);
+  letter-spacing: -0.01em;
+}
+
+/* Project description text */
+.portfolio-description {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-relaxed);
+  margin: 0;
+  font-weight: var(--font-weight-light);
+  font-family: var(--font-body);
+}
+
+/* Subtle gradient overlay on hover */
+.portfolio-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, 
+    rgba(214, 207, 196, 0.05), 
+    rgba(203, 188, 163, 0.05));
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+  pointer-events: none;
+  border-radius: var(--border-radius-2xl);
+  z-index: 1;
+}
+
+.portfolio-card:hover::before {
+  opacity: 1;
+}
+
+/* Loading spinner while content loads */
+.portfolio-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  background: var(--color-surface);
+  border-radius: var(--border-radius-2xl);
+  border: 1px solid var(--color-border);
+}
+
+.portfolio-loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--color-border);
+  border-top: 3px solid var(--color-button-bg);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Message shown when no portfolio items exist */
+.portfolio-empty {
+  text-align: center;
+  padding: var(--spacing-12) var(--spacing-6);
+  color: var(--text-secondary);
+}
+
+.portfolio-empty-icon {
+  font-size: var(--font-size-6xl);
+  margin-bottom: var(--spacing-4);
+  opacity: 0.3;
+  color: var(--color-accent);
+}
+
+/* Error state when image fails to load */
+.portfolio-image-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 250px;
+  background: var(--color-surface);
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  font-family: var(--font-body);
+}
+
+.portfolio-image-error::before {
+  content: '🖼️';
+  font-size: var(--font-size-4xl);
+  margin-bottom: var(--spacing-2);
+  opacity: 0.3;
+}
+
+/* Better swiping on touch devices */
+.portfolio-slider {
+  touch-action: pan-x;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Touch device adjustments */
+@media (hover: none) and (pointer: coarse) {
+  /* Always show navigation on touch devices */
+  .portfolio-nav {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  /* Disable hover lift effect on touch */
+  .portfolio-card:hover {
+    transform: none;
+  }
+  
+  /* Larger touch targets for buttons */
+  .portfolio-nav-btn {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* ===================================
+   TABLET RESPONSIVE STYLES (768px)
+   =================================== */
+@media (max-width: 768px) {
+  /* Single column on tablets */
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-6);
+    margin-top: var(--spacing-8);
+  }
+  
+  .portfolio-card {
+    margin: 0 var(--spacing-4);
+    border-radius: var(--border-radius-xl);
+  }
+  
+  /* Shorter images on smaller screens */
+  .portfolio-slider {
+    height: 200px;
+  }
+  
+  .portfolio-image.single {
+    height: 200px;
+  }
+  
+  /* Smaller navigation buttons */
+  .portfolio-nav-btn {
+    width: 32px;
+    height: 32px;
+    font-size: var(--font-size-sm);
+  }
+  
+  .portfolio-nav-btn i {
+    font-size: 10px;
+  }
+  
+  /* TABLET - Slightly smaller dots */
+  .portfolio-dots,
+  .slider-dots,
+  .carousel-indicators,
+  .swiper-pagination {
+    gap: 10px;
+    padding: 16px 0;
+    bottom: 8px;
+  }
+  
+  .portfolio-dot,
+  .slider-dot,
+  .carousel-indicator,
+  .swiper-pagination-bullet {
+    width: 10px !important;
+    height: 10px !important;
+    border-width: 2px !important;
+  }
+  
+  .portfolio-dot.active,
+  .slider-dot.active,
+  .carousel-indicator.active,
+  .swiper-pagination-bullet-active {
+    transform: scale(1.15) !important;
+  }
+  
+  /* Smaller image counter */
+  .image-count {
+    top: var(--spacing-2);
+    right: var(--spacing-2);
+    padding: 2px var(--spacing-2);
+    font-size: 10px;
+  }
+  
+  /* Reduced text padding */
+  .portfolio-info {
+    padding: var(--spacing-4);
+  }
+  
+  .portfolio-name {
+    font-size: var(--font-size-lg);
+  }
+  
+  .portfolio-description {
+    font-size: var(--font-size-xs);
+  }
+}
+
+/* ===================================
+   MOBILE RESPONSIVE STYLES (480px)
+   =================================== */
+@media (max-width: 480px) {
+  .portfolio-grid {
+    margin-top: var(--spacing-6);
+  }
+  
+  .portfolio-card {
+    margin: 0 var(--spacing-2);
+  }
+  
+  /* Even shorter images on small phones */
+  .portfolio-slider {
+    height: 180px;
+  }
+  
+  .portfolio-image.single {
+    height: 180px;
+  }
+  
+  /* Tiny navigation buttons for small screens */
+  .portfolio-nav-btn {
+    width: 28px;
+    height: 28px;
+    font-size: var(--font-size-xs);
+  }
+  
+  /* MOBILE - Smaller dots for better fit */
+  .portfolio-dots,
+  .slider-dots,
+  .carousel-indicators,
+  .swiper-pagination {
+    gap: 8px !important;
+    padding: 12px 0 !important;
+    bottom: 6px !important;
+  }
+  
+  .portfolio-dot,
+  .slider-dot,
+  .carousel-indicator,
+  .swiper-pagination-bullet {
+    width: 8px !important;
+    height: 8px !important;
+    border-width: 1.5px !important;
+    min-width: 8px !important;
+    min-height: 8px !important;
+  }
+  
+  .portfolio-dot.active,
+  .slider-dot.active,
+  .carousel-indicator.active,
+  .swiper-pagination-bullet-active {
+    width: 10px !important;
+    height: 10px !important;
+    transform: scale(1) !important;
+  }
+  
+  .portfolio-info {
+    padding: var(--spacing-3);
+  }
+  
+  .image-count {
+    font-size: 9px;
+  }
+}
+
+/* ===================================
+   EXTRA SMALL MOBILE (360px)
+   =================================== */
+@media (max-width: 360px) {
+  .portfolio-dots,
+  .slider-dots,
+  .carousel-indicators,
+  .swiper-pagination {
+    gap: 6px !important;
+    padding: 10px 0 !important;
+  }
+  
+  .portfolio-dot,
+  .slider-dot,
+  .carousel-indicator,
+  .swiper-pagination-bullet {
+    width: 7px !important;
+    height: 7px !important;
+    border-width: 1px !important;
+  }
+  
+  .portfolio-dot.active,
+  .slider-dot.active,
+  .carousel-indicator.active,
+  .swiper-pagination-bullet-active {
+    width: 8px !important;
+    height: 8px !important;
+  }
+}
+
+/* Full-screen modal view for enlarged images */
+.modal.portfolio-modal .modal-content {
+  max-width: 95%;
+  max-height: 95%;
+  margin: 2.5% auto;
+  background: transparent;
+  padding: 0;
+  border-radius: var(--border-radius-xl);
+}
+
+.modal.portfolio-modal .modal-image {
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-hover);
+  border: 1px solid var(--color-border);
+}
+
+.modal.portfolio-modal .modal-caption {
+  background: rgba(46, 46, 46, 0.9);
+  color: var(--color-warm-white);
+  padding: var(--spacing-4) var(--spacing-6);
+  margin-top: var(--spacing-4);
+  border-radius: var(--border-radius-lg);
+  text-align: center;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(214, 207, 196, 0.2);
+}
+
+/* Smoother animations with GPU acceleration */
+.portfolio-slides {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.portfolio-image {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Keyboard focus indicators */
+.portfolio-nav-btn:focus {
+  outline: 2px solid var(--color-button-bg);
+  outline-offset: 2px;
+}
+
+.portfolio-dot:focus,
+.slider-dot:focus,
+.carousel-indicator:focus,
+.swiper-pagination-bullet:focus {
+  outline: 2px solid var(--color-button-bg);
+  outline-offset: 1px;
+}
+
+/* ===================================
+   DARK MODE SUPPORT
+   =================================== */
+@media (prefers-color-scheme: dark) {
+  .portfolio-dot,
+  .slider-dot,
+  .carousel-indicator,
+  .swiper-pagination-bullet {
+    background-color: rgba(199, 184, 161, 0.3);
+    border-color: rgba(199, 184, 161, 0.5);
+  }
+  
+  .portfolio-dot.active,
+  .slider-dot.active,
+  .carousel-indicator.active,
+  .swiper-pagination-bullet-active {
+    background-color: #D4B996;
+    border-color: #D4B996;
+  }
+}
+
+/* High contrast mode for accessibility */
+@media (prefers-contrast: high) {
+  .portfolio-nav-btn {
+    background: var(--color-warm-white);
+    border: 2px solid var(--text-primary);
+    color: var(--text-primary);
+  }
+  
+  .portfolio-dot,
+  .slider-dot,
+  .carousel-indicator,
+  .swiper-pagination-bullet {
+    border: 1px solid var(--color-warm-white);
+  }
+  
+  .portfolio-dot.active,
+  .slider-dot.active,
+  .carousel-indicator.active,
+  .swiper-pagination-bullet-active {
+    background: var(--color-warm-white);
+    border-color: var(--text-primary);
+  }
+  
+  .image-count {
+    background: var(--text-primary);
+    border: 1px solid var(--color-warm-white);
+  }
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-slides {
+    transition: none;
+  }
+  
+  .portfolio-image {
+    transition: none;
+  }
+  
+  .portfolio-card:hover {
+    transform: none;
+  }
+  
+  .portfolio-card:hover .portfolio-image {
+    transform: none;
+  }
+}
+
+/* Print-friendly styles */
+@media print {
+  /* Hide interactive elements when printing */
+  .portfolio-nav,
+  .portfolio-dots,
+  .slider-dots,
+  .carousel-indicators,
+  .swiper-pagination,
+  .image-count {
+    display: none;
+  }
+  
+  .portfolio-slider {
+    height: auto;
+  }
+  
+  .portfolio-slides {
+    display: block;
+  }
+  
+  .portfolio-image {
+    min-width: auto;
+    max-height: 200px;
+    page-break-inside: avoid;
+  }
+}
